@@ -17,19 +17,34 @@ namespace Activ
             InitializeComponent();
         }
 
-        private void btListar_Click(object sender, EventArgs e)
+        private void tsbtBuscar_Click(object sender, EventArgs e)
         {
+            foreach(var item in Application.OpenForms)
+            {
+                if(item.GetType()== typeof(Buscar))
+                {
+                    return;
+                }
+            }
 
+            Buscar ventana = new Buscar();
+            ventana.MdiParent = this;
+            ventana.Show();
         }
 
-        private void btAgregar_Click(object sender, EventArgs e)
+        private void tsbtListar_Click(object sender, EventArgs e)
         {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(Listado))
+                {
+                    return;
+                }
+            }
 
-        }
-
-        private void btBuscar_Click(object sender, EventArgs e)
-        {
-
+            Listado ventana = new Listado();
+            ventana.MdiParent = this;
+            ventana.Show();
         }
     }
 }
