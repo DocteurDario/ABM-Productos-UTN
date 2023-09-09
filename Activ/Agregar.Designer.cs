@@ -44,13 +44,15 @@
             this.cBoxCategoria = new System.Windows.Forms.ComboBox();
             this.textCodigo = new System.Windows.Forms.TextBox();
             this.textNombre = new System.Windows.Forms.TextBox();
+            this.BtnCancel = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.PicBoxAdd);
@@ -66,7 +68,7 @@
             this.groupBox1.Controls.Add(this.cBoxCategoria);
             this.groupBox1.Controls.Add(this.textCodigo);
             this.groupBox1.Controls.Add(this.textNombre);
-            this.groupBox1.Location = new System.Drawing.Point(10, 52);
+            this.groupBox1.Location = new System.Drawing.Point(10, 22);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(580, 263);
             this.groupBox1.TabIndex = 1;
@@ -199,13 +201,34 @@
             this.textNombre.Size = new System.Drawing.Size(213, 20);
             this.textNombre.TabIndex = 1;
             // 
+            // BtnCancel
+            // 
+            this.BtnCancel.Location = new System.Drawing.Point(102, 291);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(86, 37);
+            this.BtnCancel.TabIndex = 3;
+            this.BtnCancel.Text = "Cancelar";
+            this.BtnCancel.UseVisualStyleBackColor = true;
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.Location = new System.Drawing.Point(10, 291);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(86, 37);
+            this.BtnAdd.TabIndex = 2;
+            this.BtnAdd.Text = "Agregar";
+            this.BtnAdd.UseVisualStyleBackColor = true;
+            // 
             // Agregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ClientSize = new System.Drawing.Size(600, 332);
+            this.Controls.Add(this.BtnCancel);
+            this.Controls.Add(this.BtnAdd);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Agregar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar";
@@ -234,5 +257,7 @@
         private System.Windows.Forms.ComboBox cBoxCategoria;
         private System.Windows.Forms.TextBox textCodigo;
         private System.Windows.Forms.TextBox textNombre;
+        private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.Button BtnAdd;
     }
 }

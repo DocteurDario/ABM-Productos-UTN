@@ -35,7 +35,7 @@
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtBuscar = new System.Windows.Forms.ToolStripButton();
+            this.tsbtAgregar = new System.Windows.Forms.ToolStripButton();
             this.tsbtListar = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -87,7 +87,7 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtBuscar,
+            this.tsbtAgregar,
             this.tsbtListar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
@@ -95,15 +95,15 @@
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // tsbtBuscar
+            // tsbtAgregar
             // 
-            this.tsbtBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtBuscar.Image = ((System.Drawing.Image)(resources.GetObject("tsbtBuscar.Image")));
-            this.tsbtBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtBuscar.Name = "tsbtBuscar";
-            this.tsbtBuscar.Size = new System.Drawing.Size(24, 24);
-            this.tsbtBuscar.Text = "Buscar";
-            this.tsbtBuscar.Click += new System.EventHandler(this.tsbtBuscar_Click);
+            this.tsbtAgregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtAgregar.Image = ((System.Drawing.Image)(resources.GetObject("tsbtAgregar.Image")));
+            this.tsbtAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtAgregar.Name = "tsbtAgregar";
+            this.tsbtAgregar.Size = new System.Drawing.Size(24, 24);
+            this.tsbtAgregar.Text = "Agregar";
+            this.tsbtAgregar.Click += new System.EventHandler(this.tsbtBuscar_Click);
             // 
             // tsbtListar
             // 
@@ -124,7 +124,7 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
@@ -145,7 +145,7 @@
         private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsbtBuscar;
+        private System.Windows.Forms.ToolStripButton tsbtAgregar;
         private System.Windows.Forms.ToolStripButton tsbtListar;
     }
 }
