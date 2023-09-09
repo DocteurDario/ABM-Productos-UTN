@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Activ
 {
-    internal class Imagen
+    class Imagen
     {
-        public int id { get; set; }
-        public int idArticulo { get; set; }
-        public string imagenUrl { get; set; }
+        public int ID { get; set; }
+        public int IdArticulo { get; set; }
+        public string ImagenUrl { get; set; }
     }
 }
