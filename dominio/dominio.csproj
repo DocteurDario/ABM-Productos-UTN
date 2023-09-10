@@ -47,11 +47,5 @@
     <Compile Include="Marca.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\negocio\negocio.csproj">
-      <Project>{62d53335-bf5e-4000-8a9b-095b8c7e2441}</Project>
-      <Name>negocio</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
