@@ -22,12 +22,32 @@ namespace Activ
             Negocio negocio = new Negocio();
             listaArticulo = negocio.listar();
             dgvLista.DataSource = listaArticulo;
+            dgvLista.Columns["imagen"].Visible = false; 
             pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
         }
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-            pbImagen.Load(seleccionado.imagen.imagenUrl);
-        }      
+            cargarImagen(seleccionado.imagen.imagenUrl);
+        }
+
+        private void dgvLista_SelectionChanged(object sender, EventArgs e)
+        {
+            Articulo seleccionado=(Articulo)dgvLista.CurrentRow.DataBoundItem; // devuelve un obj, se casteo
+            cargarImagen(seleccionado.imagen.imagenUrl);
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbImagen.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbImagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
+            }
+            
+        }
     }
 }
