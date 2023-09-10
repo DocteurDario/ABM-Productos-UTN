@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Activ
+namespace dominio
 {
-    internal class Articulo
+    public class Articulo
     {
         public int id { get; set; }
         public string codigo { get; set; }
@@ -16,6 +16,5 @@ namespace Activ
         public Categoria categoria { get; set; }
         public Imagen imagen { get; set; }
         public decimal precio { get; set; }
-
     }
 }

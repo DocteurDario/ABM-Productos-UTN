@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using dominio;
 
-namespace Activ
+namespace negocio
 {
-    internal class Negocio
+    public class Negocio
     {
         public List<Articulo> listar()
         {
