@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
+
+
 namespace negocio
 {
     public class ArticuloNegocio
@@ -40,6 +43,27 @@ namespace negocio
                 throw ex;
             }
 
+        }
+        public void agregar( Articulo nuevo)
+        {
+            AccesoADatos dato = new AccesoADatos();
+
+            try
+            {
+                dato.setearConsulta("insert into ARTICULOS values (Codigo, Nombre, Descripcuion)Values('"+ nuevo.codigo +"', '"+ nuevo.nombre + "', '"+ nuevo.descripcion +"')");
+                dato.ejecutarAcccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+
+            
         }
 
     }

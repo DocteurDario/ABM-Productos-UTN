@@ -45,6 +45,21 @@ namespace negocio
             
            
         }
+        public void ejecutarAcccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
         public void cerrarConexion()
         {
             if (lector != null)

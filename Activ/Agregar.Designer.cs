@@ -45,7 +45,7 @@
             this.textCodigo = new System.Windows.Forms.TextBox();
             this.textNombre = new System.Windows.Forms.TextBox();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.BtnAdd = new System.Windows.Forms.Button();
+            this.BtnAgregar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxAdd)).BeginInit();
             this.SuspendLayout();
@@ -209,15 +209,17 @@
             this.BtnCancel.TabIndex = 3;
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // BtnAdd
+            // BtnAgregar
             // 
-            this.BtnAdd.Location = new System.Drawing.Point(10, 291);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(86, 37);
-            this.BtnAdd.TabIndex = 2;
-            this.BtnAdd.Text = "Agregar";
-            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAgregar.Location = new System.Drawing.Point(10, 291);
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.Size = new System.Drawing.Size(86, 37);
+            this.BtnAgregar.TabIndex = 2;
+            this.BtnAgregar.Text = "Agregar";
+            this.BtnAgregar.UseVisualStyleBackColor = true;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // Agregar
             // 
@@ -226,7 +228,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(600, 332);
             this.Controls.Add(this.BtnCancel);
-            this.Controls.Add(this.BtnAdd);
+            this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Agregar";
@@ -258,6 +260,6 @@
         private System.Windows.Forms.TextBox textCodigo;
         private System.Windows.Forms.TextBox textNombre;
         private System.Windows.Forms.Button BtnCancel;
-        private System.Windows.Forms.Button BtnAdd;
+        private System.Windows.Forms.Button BtnAgregar;
     }
 }
