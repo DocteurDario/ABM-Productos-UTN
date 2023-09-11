@@ -35,7 +35,7 @@ namespace Activ
                 auxArticulo.descripcion = textDescripcion.Text;
                 auxArticulo.marca = (Marca)cBoxMarca.SelectedItem; 
                 auxArticulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-                auxArticulo.imagen = (Imagen)textUrl.Text; // vamos a ver que hace Tag....
+                //auxArticulo.imagen = (Imagen)textUrl.Text; // vamos a ver que hace Tag....
                 auxArticulo.precio = decimal.Parse(textPrecio.Text);
 
                 negocio.agregar(auxArticulo);
