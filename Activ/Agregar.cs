@@ -33,10 +33,10 @@ namespace Activ
                 auxArticulo.codigo = textCodigo.Text;
                 auxArticulo.nombre = textNombre.Text;
                 auxArticulo.descripcion = textDescripcion.Text;
-                //auxArticulo.marca = (Marca)cBoxMarca.SelectedItem; 
-                //auxArticulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-                //auxArticulo.imagen = (Imagen)textUrl.Tag; // vamos a ver que hace Tag....
-                //decimal precio;
+                auxArticulo.marca = (Marca)cBoxMarca.SelectedItem; 
+                auxArticulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
+                auxArticulo.imagen = (Imagen)textUrl.Text; // vamos a ver que hace Tag....
+                auxArticulo.precio = decimal.Parse(textPrecio.Text);
 
                 negocio.agregar(auxArticulo);
                 MessageBox.Show("Agregado Exitosamente...");
@@ -49,6 +49,23 @@ namespace Activ
                 MessageBox.Show(" Error : "+ ex.ToString());
             }
 
+        }
+
+        private void Agregar_Load(object sender, EventArgs e)
+        {
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+
+            try
+            {
+                cBoxMarca.DataSource = marcaNegocio.listar();
+                cBoxCategoria.DataSource = categoriaNegocio.listar();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

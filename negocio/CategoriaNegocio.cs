@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
+
 namespace negocio
 {
-    class CategoriaNegocio
+    public class CategoriaNegocio
     {
         public List<Categoria> listar()
         {
@@ -24,18 +25,14 @@ namespace negocio
                     aux.id = (int)datos.Lector["Id"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
                     
-
                     lista.Add(aux);
-
                 }
                 return lista;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
     }
 }
