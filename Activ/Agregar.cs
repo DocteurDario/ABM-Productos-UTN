@@ -29,12 +29,12 @@ namespace Activ
             Articulo auxArticulo = new Articulo();
             ArticuloNegocio negocio = new ArticuloNegocio();
 
-            Imagen auxImagen = new Imagen();
+            Imagen img = new Imagen();
             ImagenNegocio negocioImagen = new ImagenNegocio();
+            AccesoADatos datos = new AccesoADatos();
 
             try
             {
-          
                 auxArticulo.codigo = textCodigo.Text;
                 auxArticulo.nombre = textNombre.Text;
                 auxArticulo.descripcion = textDescripcion.Text;
@@ -42,36 +42,23 @@ namespace Activ
                 auxArticulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
                 auxArticulo.precio = decimal.Parse(textPrecio.Text);
 
+                negocio.agregar(auxArticulo);               
+
+                int idArticulo = negocio.UltimoRegistro();
                 
+                img.idArticulo = idArticulo;
+                img.imagenUrl = textUrl.Text;
 
-                //int idArticulo = negocio.UltimoRegistro().
-                // entra a la base de datos y obtiene su ID
-
-
-                // Configura los datos de la imagen y vincúlala al artículo
-                int aux1= negocio.UltimoRegistro();
-                MessageBox.Show(" Tiene  " + aux1 );
-                auxImagen.idArticulo = negocio.UltimoRegistro()+1; // Vincula la imagen al artículo usando su ID
-                auxImagen.imagenUrl = textUrl.Text;
-
-                //Agrega la imagen a la base de datos
-                negocio.agregar(auxArticulo);
-                negocioImagen.agregar(auxImagen);
-
-
-                
+                negocioImagen.agregar(img);
+               
                 MessageBox.Show("Agregado Exitosamente...");
-                Close();   
-                
+                Close();                   
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(" Error : "+ ex.ToString());
             }
-
         }
-
         private void Agregar_Load(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();

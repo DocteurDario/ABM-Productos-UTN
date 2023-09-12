@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -18,10 +19,7 @@ namespace negocio
 
             try
             {
-
-              // datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, A.Precio from ARTICULOS A, IMAGENES I where I.IdArticulo = A.Id");
-               datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
-
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -47,43 +45,38 @@ namespace negocio
                     aux.precio = (decimal)datos.Lector["Precio"];
 
                     lista.Add(aux);
-                }
+                }             
                 return lista;
             }
             catch (Exception ex)
             {
-
-                throw ex;
-              
+                throw ex;              
             }
-
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
-        public void agregar( Articulo nuevo)
-        {
-            
+        public void agregar(Articulo nuevo)
+        {            
             AccesoADatos dato = new AccesoADatos();
 
             try
             {
                 dato.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)values('"+ nuevo.codigo +"', '"+ nuevo.nombre + "', '"+ nuevo.descripcion +"', @idMarca, @idCategoria,"+nuevo.precio+" )");
                 dato.setearParametro("@idMarca", nuevo.marca.id);
-                dato.setearParametro("@idCategoria", nuevo.categoria.id);
+                dato.setearParametro("@idCategoria", nuevo.categoria.id);               
                 dato.ejecutarAcccion();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 dato.cerrarConexion();
-            }
-
-            
-        }
-        
-
+            }           
+        }        
         public int UltimoRegistro()
         {
             List<Articulo> lista = new List<Articulo>();
@@ -91,10 +84,10 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select A.Id from ARTICULOS A ");
+                datos.setearConsulta("select A.Id from ARTICULOS A");
                 datos.ejecutarLectura();
 
-                int auxIdArticulo=-1;
+                int auxIdArticulo = new int();
 
                 while (datos.Lector.Read())
                 {
@@ -105,10 +98,8 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
     }
 }
