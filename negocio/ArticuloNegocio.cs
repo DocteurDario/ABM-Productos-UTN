@@ -35,16 +35,21 @@ namespace negocio
                     aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.marca = new Marca();
                     aux.marca.descripcion = (string)datos.Lector["Marca"];
-                    aux.categoria = new Categoria();
-                    aux.categoria.descripcion = (string)datos.Lector["Categoria"];
+                   // aux.categoria = new Categoria();
+                   // aux.categoria.descripcion = (string)datos.Lector["Categoria"];
                     aux.precio = (decimal)datos.Lector["Precio"];
                     
-                    aux.marca = new Marca();
-                    aux.marca.descripcion = (string)datos.Lector["Marca"];
+                    
 
+
+                   /* if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Categoria"))))
+                        aux.categoria.descripcion = (string)datos.Lector["Categoria"];*/
                     aux.categoria = new Categoria();
-                    aux.categoria.descripcion = (string)datos.Lector["Categoria"];
-
+                    /* if(!(datos.Lector["Categoria"] is DBNull))
+                             aux.categoria.descripcion = (string)datos.Lector["Categoria"];
+                    */
+                    if (!Convert.IsDBNull(datos.Lector["Categoria"])) aux.categoria.descripcion = (string)datos.Lector["Categoria"];
+                    else aux.categoria.descripcion = "";
 
                     lista.Add(aux);
 
