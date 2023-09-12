@@ -22,10 +22,18 @@ namespace Activ
         private void Listado_Load_1(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulo = negocio.listar();
-            dgvLista.DataSource = listaArticulo;
-            dgvLista.Columns["imagen"].Visible = false; 
-            pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
+            try
+            {
+                listaArticulo = negocio.listar();
+                dgvLista.DataSource = listaArticulo;
+                dgvLista.Columns["imagen"].Visible = false;
+                pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

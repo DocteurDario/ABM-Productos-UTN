@@ -40,5 +40,15 @@ namespace Activ
             ventana.MdiParent = this;
             ventana.Show();
         }
+
+        private void articuloToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
