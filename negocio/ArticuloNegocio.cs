@@ -20,7 +20,7 @@ namespace negocio
             {
 
               // datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, A.Precio from ARTICULOS A, IMAGENES I where I.IdArticulo = A.Id");
-               datos.setearConsulta("SELECT A.Id,  A.Codigo, A.Nombre, A.Descripcion,M.Descripcion AS Marca, C.Descripcion as Categoria, A.Precio, I.ImagenUrl FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON I.Id = I.IdArticulo");
+               datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
 
                 datos.ejecutarLectura();
 
@@ -35,24 +35,18 @@ namespace negocio
                     aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.marca = new Marca();
                     aux.marca.descripcion = (string)datos.Lector["Marca"];
-                   // aux.categoria = new Categoria();
-                   // aux.categoria.descripcion = (string)datos.Lector["Categoria"];
-                    aux.precio = (decimal)datos.Lector["Precio"];
-                    
-                    
-
-
-                   /* if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Categoria"))))
-                        aux.categoria.descripcion = (string)datos.Lector["Categoria"];*/
                     aux.categoria = new Categoria();
-                    /* if(!(datos.Lector["Categoria"] is DBNull))
-                             aux.categoria.descripcion = (string)datos.Lector["Categoria"];
-                    */
-                    if (!Convert.IsDBNull(datos.Lector["Categoria"])) aux.categoria.descripcion = (string)datos.Lector["Categoria"];
-                    else aux.categoria.descripcion = "";
+                    if(!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Categoria")))
+                    {
+                        aux.categoria.descripcion = (string)datos.Lector["Categoria"];
+                    }
+                    else
+                    {
+                        aux.categoria.descripcion = "";
+                    }
+                    aux.precio = (decimal)datos.Lector["Precio"];
 
                     lista.Add(aux);
-
                 }
                 return lista;
             }
