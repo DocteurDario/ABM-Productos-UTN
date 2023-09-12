@@ -51,5 +51,21 @@ namespace Activ
             }
             
         }
+
+        private void pbImagen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            Agregar alta = new Agregar();
+            alta.ShowDialog();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

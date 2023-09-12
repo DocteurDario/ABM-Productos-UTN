@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
+
+
 namespace negocio
 {
     public class ArticuloNegocio
@@ -15,8 +18,12 @@ namespace negocio
 
             try
             {
+<<<<<<< HEAD
                   // datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, A.Precio from ARTICULOS A, IMAGENES I where I.IdArticulo = A.Id");
                datos.setearConsulta("SELECT A.Id,  A.Codigo, A.Nombre, A.Descripcion,M.Descripcion AS Marca, C.Descripcion as Categoria, A.Precio, I.ImagenUrl FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON I.Id = I.IdArticulo");
+=======
+                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio from ARTICULOS A, IMAGENES I , MARCAS M, CATEGORIAS C where I.IdArticulo = A.Id and M.Id =A.Id and C.Id = A.Id");
+>>>>>>> 7c359c44951661af3051476472730e391fbb766a
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -28,6 +35,10 @@ namespace negocio
                     aux.descripcion = (string)datos.Lector["Descripcion"];
                     aux.imagen = new Imagen();
                     aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.marca = new Marca();
+                    aux.marca.descripcion = (string)datos.Lector["Marca"];
+                    aux.categoria = new Categoria();
+                    aux.categoria.descripcion = (string)datos.Lector["Categoria"];
                     aux.precio = (decimal)datos.Lector["Precio"];
                     
                     aux.marca = new Marca();
@@ -49,6 +60,29 @@ namespace negocio
               
             }
 
+        }
+        public void agregar( Articulo nuevo)
+        {
+            AccesoADatos dato = new AccesoADatos();
+
+            try
+            {
+                dato.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)values('"+ nuevo.codigo +"', '"+ nuevo.nombre + "', '"+ nuevo.descripcion +"', @idMarca, @idCategoria,"+nuevo.precio+" )");
+                dato.setearParametro("@idMarca", nuevo.marca.id);
+                dato.setearParametro("@idCategoria", nuevo.categoria.id);
+                dato.ejecutarAcccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+
+            
         }
 
     }

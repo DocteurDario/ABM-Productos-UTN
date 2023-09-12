@@ -7,7 +7,7 @@ using dominio;
 
 namespace negocio
 {
-    class MarcaNegocio
+    public class MarcaNegocio
     {
         public List<Marca> listar()
         {
@@ -25,15 +25,12 @@ namespace negocio
                     aux.id = (int)datos.Lector["Id"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
 
-
                     lista.Add(aux);
-
                 }
                 return lista;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
