@@ -18,12 +18,10 @@ namespace negocio
 
             try
             {
-<<<<<<< HEAD
-                  // datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, A.Precio from ARTICULOS A, IMAGENES I where I.IdArticulo = A.Id");
+
+              // datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, A.Precio from ARTICULOS A, IMAGENES I where I.IdArticulo = A.Id");
                datos.setearConsulta("SELECT A.Id,  A.Codigo, A.Nombre, A.Descripcion,M.Descripcion AS Marca, C.Descripcion as Categoria, A.Precio, I.ImagenUrl FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON I.Id = I.IdArticulo");
-=======
-                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio from ARTICULOS A, IMAGENES I , MARCAS M, CATEGORIAS C where I.IdArticulo = A.Id and M.Id =A.Id and C.Id = A.Id");
->>>>>>> 7c359c44951661af3051476472730e391fbb766a
+
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
