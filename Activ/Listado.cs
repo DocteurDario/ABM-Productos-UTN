@@ -21,7 +21,7 @@ namespace Activ
         }
         private void Listado_Load_1(object sender, EventArgs e)
         {
-            Negocio negocio = new Negocio();
+            ArticuloNegocio negocio = new ArticuloNegocio();
             listaArticulo = negocio.listar();
             dgvLista.DataSource = listaArticulo;
             dgvLista.Columns["imagen"].Visible = false; 
