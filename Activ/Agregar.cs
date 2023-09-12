@@ -35,6 +35,16 @@ namespace Activ
 
             try
             {
+                if(string.IsNullOrEmpty(textCodigo.Text) ||
+                    string.IsNullOrEmpty(textNombre.Text) ||
+                    string.IsNullOrEmpty(textDescripcion.Text) ||
+                    string.IsNullOrEmpty(textUrl.Text) ||
+                    string.IsNullOrEmpty(textPrecio.Text))
+                {               
+                    MessageBox.Show("Hay campos sin completar");
+                    Close();
+                }
+                
                 auxArticulo.codigo = textCodigo.Text;
                 auxArticulo.nombre = textNombre.Text;
                 auxArticulo.descripcion = textDescripcion.Text;
