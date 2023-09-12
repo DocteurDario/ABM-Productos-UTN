@@ -28,17 +28,38 @@ namespace Activ
         {
             Articulo auxArticulo = new Articulo();
             ArticuloNegocio negocio = new ArticuloNegocio();
+
+            Imagen auxImagen = new Imagen();
+            ImagenNegocio negocioImagen = new ImagenNegocio();
+
             try
             {
+          
                 auxArticulo.codigo = textCodigo.Text;
                 auxArticulo.nombre = textNombre.Text;
                 auxArticulo.descripcion = textDescripcion.Text;
                 auxArticulo.marca = (Marca)cBoxMarca.SelectedItem; 
                 auxArticulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-                //auxArticulo.imagen = (Imagen)textUrl.Text; // vamos a ver que hace Tag....
                 auxArticulo.precio = decimal.Parse(textPrecio.Text);
 
+                
+
+                //int idArticulo = negocio.UltimoRegistro().
+                // entra a la base de datos y obtiene su ID
+
+
+                // Configura los datos de la imagen y vincúlala al artículo
+                int aux1= negocio.UltimoRegistro();
+                MessageBox.Show(" Tiene  " + aux1 );
+                auxImagen.idArticulo = negocio.UltimoRegistro()+1; // Vincula la imagen al artículo usando su ID
+                auxImagen.imagenUrl = textUrl.Text;
+
+                //Agrega la imagen a la base de datos
                 negocio.agregar(auxArticulo);
+                negocioImagen.agregar(auxImagen);
+
+
+                
                 MessageBox.Show("Agregado Exitosamente...");
                 Close();   
                 

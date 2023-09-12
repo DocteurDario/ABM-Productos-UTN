@@ -50,6 +50,7 @@ namespace negocio
         }
         public void agregar( Articulo nuevo)
         {
+            
             AccesoADatos dato = new AccesoADatos();
 
             try
@@ -71,6 +72,33 @@ namespace negocio
 
             
         }
+        
 
+        public int UltimoRegistro()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("select A.Id from ARTICULOS A ");
+                datos.ejecutarLectura();
+
+                int auxIdArticulo=-1;
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    auxIdArticulo = (int)datos.Lector["Id"];
+                }
+                return auxIdArticulo;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
     }
 }

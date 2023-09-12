@@ -39,6 +39,29 @@ namespace negocio
                 throw ex;
             }
 
+           
+        }
+        public void agregar(Imagen nuevo)
+        {
+
+            AccesoADatos dato = new AccesoADatos();
+
+            try
+            {
+                dato.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl)values(" + nuevo.idArticulo + ", '" + nuevo.imagenUrl + "')");
+                dato.ejecutarAcccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+
+
         }
     }
 }
