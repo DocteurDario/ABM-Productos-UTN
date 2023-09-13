@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,13 @@ namespace Activ
         {
             InitializeComponent();
         }
+
         private void Listado_Load_1(object sender, EventArgs e)
+        {
+            cargarListaDataGriedView();
+        }
+
+        private void cargarListaDataGriedView()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
@@ -34,7 +41,9 @@ namespace Activ
 
                 MessageBox.Show(ex.ToString());
             }
+
         }
+
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
@@ -43,11 +52,11 @@ namespace Activ
 
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
         {
-            Articulo seleccionado=(Articulo)dgvLista.CurrentRow.DataBoundItem; // devuelve un obj, se casteo
+            Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem; // devuelve un obj, se casteo
             cargarImagen(seleccionado.imagen.imagenUrl);
         }
 
-        private void cargarImagen(string imagen)
+       private void cargarImagen(string imagen)
         {
             try
             {
@@ -57,7 +66,7 @@ namespace Activ
             {
                 pbImagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
-            
+
         }
 
         private void pbImagen_Click(object sender, EventArgs e)
@@ -69,11 +78,13 @@ namespace Activ
         {
             Agregar alta = new Agregar();
             alta.ShowDialog();
+            cargarListaDataGriedView();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+   
     }
 }

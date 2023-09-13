@@ -56,12 +56,14 @@
             // dgvLista
             // 
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLista.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvLista.Location = new System.Drawing.Point(11, 22);
             this.dgvLista.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvLista.MultiSelect = false;
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.RowHeadersWidth = 51;
             this.dgvLista.RowTemplate.Height = 24;
-            this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista.Size = new System.Drawing.Size(757, 245);
             this.dgvLista.TabIndex = 0;
             this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellContentClick);
@@ -133,7 +135,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
+            this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 19;
             this.label1.Text = "Busqueda:";
             // 

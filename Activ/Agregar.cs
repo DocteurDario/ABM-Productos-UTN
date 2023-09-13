@@ -38,7 +38,7 @@ namespace Activ
                 if(string.IsNullOrEmpty(textCodigo.Text) ||
                     string.IsNullOrEmpty(textNombre.Text) ||
                     string.IsNullOrEmpty(textDescripcion.Text) ||
-                    string.IsNullOrEmpty(textUrl.Text) ||
+                    string.IsNullOrEmpty(txtUrlImagen.Text) ||
                     string.IsNullOrEmpty(textPrecio.Text))
                 {               
                     MessageBox.Show("Hay campos sin completar");
@@ -57,7 +57,7 @@ namespace Activ
                 int idArticulo = negocio.UltimoRegistro();
                 
                 img.idArticulo = idArticulo;
-                img.imagenUrl = textUrl.Text;
+                img.imagenUrl = txtUrlImagen.Text;
 
                 negocioImagen.agregar(img);
                
@@ -84,6 +84,25 @@ namespace Activ
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+       
+
+        private void txtUrlImagen_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtUrlImagen.Text);
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                PicBoxAdd.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                PicBoxAdd.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
+            }
+
         }
     }
 }
