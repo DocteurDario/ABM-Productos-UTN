@@ -19,7 +19,13 @@ namespace Activ
         {
             InitializeComponent();
         }
+
         private void Listado_Load_1(object sender, EventArgs e)
+        {
+            cargarListaDataGriedView();
+        }
+
+        private void cargarListaDataGriedView()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
@@ -34,7 +40,9 @@ namespace Activ
 
                 MessageBox.Show(ex.ToString());
             }
+
         }
+
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
@@ -69,6 +77,7 @@ namespace Activ
         {
             Agregar alta = new Agregar();
             alta.ShowDialog();
+            cargarListaDataGriedView();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
