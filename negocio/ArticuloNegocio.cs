@@ -63,11 +63,10 @@ namespace negocio
 
             try
             {
-                dato.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio,ImagenUrl)values('"+ nuevo.codigo +"', '"+ nuevo.nombre + "', '"+ nuevo.descripcion +"', @idMarca, @idCategoria, @ImagenUrl, "+nuevo.precio+" )");
+                dato.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)values('"+ nuevo.codigo +"', '"+ nuevo.nombre + "', '"+ nuevo.descripcion +"', @idMarca, @idCategoria,'"+nuevo.precio+"')");
                 dato.setearParametro("@idMarca", nuevo.marca.id);
                 dato.setearParametro("@idCategoria", nuevo.categoria.id);               
                 dato.ejecutarAcccion();
-                dato.setearParametro("ImagenUrl", nuevo.imagen);
             }
             catch (Exception ex)
             {
