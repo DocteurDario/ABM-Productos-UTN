@@ -81,9 +81,13 @@ namespace Activ
             try
             {
                 cBoxMarca.DataSource = marcaNegocio.listar();
+                cBoxMarca.ValueMember = "Id";
+                cBoxMarca.DisplayMember = "Descripcion";
                 cBoxCategoria.DataSource = categoriaNegocio.listar();
+                cBoxCategoria.ValueMember = "Id";
+                cBoxCategoria.DisplayMember = "Descripcion";
 
-                if(articulo != null)
+                if (articulo != null)
                 {
                     textCodigo.Text = articulo.codigo;
                     textNombre.Text = articulo.nombre;
@@ -91,6 +95,8 @@ namespace Activ
                     txtUrlImagen.Text = articulo.imagen.imagenUrl;
                     textPrecio.Text = articulo.precio.ToString();
                     cargarImagen(articulo.imagen.imagenUrl);
+                    cBoxMarca.SelectedValue = articulo.marca.id;
+                    cBoxCategoria.SelectedValue = articulo.categoria.id;
                 }
             }
             catch (Exception ex)
