@@ -14,11 +14,16 @@ namespace Activ
 {
     public partial class Agregar : Form
     {
+        private Articulo articulo = null;
         public Agregar()
         {
             InitializeComponent();
         }
-
+        public Agregar(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+        }
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -73,21 +78,26 @@ namespace Activ
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-
             try
             {
                 cBoxMarca.DataSource = marcaNegocio.listar();
                 cBoxCategoria.DataSource = categoriaNegocio.listar();
+
+                if(articulo != null)
+                {
+                    textCodigo.Text = articulo.codigo;
+                    textNombre.Text = articulo.nombre;
+                    textDescripcion.Text = articulo.descripcion;
+                    txtUrlImagen.Text = articulo.imagen.imagenUrl;
+                    textPrecio.Text = articulo.precio.ToString();
+                    cargarImagen(articulo.imagen.imagenUrl);
+                }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
-
-       
-
         private void txtUrlImagen_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtUrlImagen.Text);
@@ -102,7 +112,6 @@ namespace Activ
             {
                 PicBoxAdd.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
-
         }
     }
 }

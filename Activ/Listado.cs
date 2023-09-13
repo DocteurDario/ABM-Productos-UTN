@@ -73,6 +73,16 @@ namespace Activ
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }  
+        }
+
+        private void BtnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+
+            Agregar modificar = new Agregar(seleccionado);
+            modificar.ShowDialog();
+            cargarListaDataGriedView();
+        }
     }
 }
