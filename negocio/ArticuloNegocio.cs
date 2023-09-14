@@ -19,7 +19,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl,I.Id, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion,I.Id, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -30,7 +30,7 @@ namespace negocio
                     aux.nombre = (string)datos.Lector["Nombre"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
                     aux.imagen = new Imagen();
-                    aux.imagen.id = (int)datos.Lector["IdImagen"];
+                    aux.imagen.id = (int)datos.Lector["Id"];
                     aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.marca = new Marca();
                     aux.marca.id = (int)datos.Lector["IdMarca"];
@@ -63,7 +63,6 @@ namespace negocio
         public void agregar(Articulo nuevo)
         {            
             AccesoADatos dato = new AccesoADatos();
-
             try
             {
                 dato.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)values('"+ nuevo.codigo +"', '"+ nuevo.nombre + "', '"+ nuevo.descripcion +"', @idMarca, @idCategoria,'"+nuevo.precio+"')");
@@ -84,14 +83,11 @@ namespace negocio
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoADatos datos = new AccesoADatos();
-
             try
             {
                 datos.setearConsulta("select A.Id from ARTICULOS A");
                 datos.ejecutarLectura();
-
                 int auxIdArticulo = new int();
-
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();

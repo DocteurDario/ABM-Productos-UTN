@@ -45,7 +45,6 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -58,7 +57,7 @@ namespace negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("update IMAGENES set ImagenUrl = @UrlImagen where Id = @id");
+                datos.setearConsulta("update IMAGENES set ImagenUrl = @UrlImagen where Id = @id and IdArticulo = @idArticulo");
                 datos.setearParametro("@id", imagen.id);
                 datos.setearParametro("@idArticulo", imagen.idArticulo);
                 datos.setearParametro("@UrlImagen", imagen.imagenUrl);

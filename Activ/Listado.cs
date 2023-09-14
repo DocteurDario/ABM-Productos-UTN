@@ -61,10 +61,6 @@ namespace Activ
                 pbImagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
         }
-        private void pbImagen_Click(object sender, EventArgs e)
-        {
-
-        }
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             Agregar alta = new Agregar();

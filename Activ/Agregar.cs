@@ -52,7 +52,7 @@ namespace Activ
                     articulo = new Articulo();
                     articulo.codigo = textCodigo.Text;
                     articulo.nombre = textNombre.Text;
-                    articulo.descripcion = textDescripcion.Text;
+                    articulo.descripcion = textDescripcion.Text;                   
                     articulo.marca = (Marca)cBoxMarca.SelectedItem;
                     articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
                     articulo.precio = decimal.Parse(textPrecio.Text);
@@ -60,8 +60,9 @@ namespace Activ
                     if (articulo.id != 0)
                     {
                         negocio.Modificar(articulo);
-                        int idArticulo = negocio.UltimoRegistro();
-                        img.idArticulo = idArticulo;
+                        img.id = articulo.imagen.id;
+                        img.idArticulo = articulo.id;
+                        img.imagenUrl = txtUrlImagen.Text;
                         negocioImagen.Modificar(img);
                         MessageBox.Show("Modificado Exitosamente...");
                     }
