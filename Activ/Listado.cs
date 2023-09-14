@@ -79,5 +79,31 @@ namespace Activ
             modificar.ShowDialog();
             cargarListaDataGriedView();
         }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio nego = new ArticuloNegocio();
+            Articulo articulo;
+
+
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Desea eliminar este articulo?..", "Eliminar Articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); ;
+                if (respuesta == DialogResult.Yes)
+                {
+
+                    articulo = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+                    nego.Eliminar(articulo.id);
+                    cargarListaDataGriedView();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+
+            }
+
+        }
     }
 }
