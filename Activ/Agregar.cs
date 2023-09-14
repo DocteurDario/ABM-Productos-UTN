@@ -29,13 +29,11 @@ namespace Activ
         {
             Close();
         }
-
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             Imagen img = new Imagen();
             ImagenNegocio negocioImagen = new ImagenNegocio();           
-
             try
             {
                 if(string.IsNullOrEmpty(textCodigo.Text) ||
@@ -47,36 +45,40 @@ namespace Activ
                     MessageBox.Show("Hay campos sin completar");
                     Close();
                 }
-                if (articulo == null)
+                else 
                 {
-                    articulo = new Articulo();
+                    if (articulo == null)
+                    {
+                        articulo = new Articulo();
+                    }
                     articulo.codigo = textCodigo.Text;
                     articulo.nombre = textNombre.Text;
-                    articulo.descripcion = textDescripcion.Text;                   
+                    articulo.descripcion = textDescripcion.Text;
                     articulo.marca = (Marca)cBoxMarca.SelectedItem;
                     articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
                     articulo.precio = decimal.Parse(textPrecio.Text);
 
                     if (articulo.id != 0)
                     {
-                        negocio.Modificar(articulo);
-                        img.id = articulo.imagen.id;
-                        img.idArticulo = articulo.id;
-                        img.imagenUrl = txtUrlImagen.Text;
-                        negocioImagen.Modificar(img);
-                        MessageBox.Show("Modificado Exitosamente...");
+                            negocio.Modificar(articulo);
+                            img.id = articulo.imagen.id;
+                            img.idArticulo = articulo.id;
+                            img.imagenUrl = txtUrlImagen.Text;
+                            negocioImagen.Modificar(img);
+                            MessageBox.Show("Modificado Exitosamente...");
                     }
                     else
                     {
-                        negocio.agregar(articulo);
-                        int idArticulo = negocio.UltimoRegistro();               
-                        img.idArticulo = idArticulo;
-                        img.imagenUrl = txtUrlImagen.Text;
-                        negocioImagen.agregar(img);              
-                        MessageBox.Show("Agregado Exitosamente...");
+                         negocio.agregar(articulo);
+                         int idArticulo = negocio.UltimoRegistro();
+                         img.idArticulo = idArticulo;
+                         img.imagenUrl = txtUrlImagen.Text;
+                         negocioImagen.agregar(img);
+                         MessageBox.Show("Agregado Exitosamente...");
                     }
+                    
+                    Close();                   
                 }
-                Close();                   
             }
             catch (Exception ex)
             {

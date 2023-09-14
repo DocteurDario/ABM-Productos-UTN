@@ -109,8 +109,8 @@ namespace negocio
                 datos.setearParametro("@codigo", articulo.codigo);
                 datos.setearParametro("@nombre", articulo.nombre);
                 datos.setearParametro("@descripcion", articulo.descripcion);
-                datos.setearParametro("@marca", articulo.marca);
-                datos.setearParametro("@categoria", articulo.categoria);
+                datos.setearParametro("@marca", articulo.marca.id);
+                datos.setearParametro("@categoria", articulo.categoria.id);
                 datos.setearParametro("@precio", articulo.precio);
                 datos.setearParametro("@id", articulo.id);
                 datos.ejecutarAcccion();         
