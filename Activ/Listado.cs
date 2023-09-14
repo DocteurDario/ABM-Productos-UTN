@@ -32,6 +32,7 @@ namespace Activ
                 listaArticulo = negocio.listar();
                 dgvLista.DataSource = listaArticulo;
                 dgvLista.Columns["imagen"].Visible = false;
+                //dgvLista.Columns["id"].Visible = false;
                 pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
             }
             catch (Exception ex)
@@ -74,12 +75,10 @@ namespace Activ
         {
             this.Close();
         }
-
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
             seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-
             Agregar modificar = new Agregar(seleccionado);
             modificar.ShowDialog();
             cargarListaDataGriedView();

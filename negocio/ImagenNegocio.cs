@@ -25,25 +25,17 @@ namespace negocio
                     aux.id = (int)datos.Lector["Id"];
                     aux.idArticulo = (int)datos.Lector["idArticulo"];
                     aux.imagenUrl = (string)datos.Lector["imagenUrl"];
-
-
-
                     lista.Add(aux);
-
                 }
                 return lista;
             }
             catch (Exception ex)
             {
-
                 throw ex;
-            }
-
-           
+            }         
         }
         public void agregar(Imagen nuevo)
         {
-
             AccesoADatos dato = new AccesoADatos();
 
             try
@@ -60,8 +52,26 @@ namespace negocio
             {
                 dato.cerrarConexion();
             }
-
-
+        }
+        public void Modificar(Imagen imagen)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                datos.setearConsulta("update IMAGENES set ImagenUrl = @UrlImagen where Id = @id");
+                datos.setearParametro("@id", imagen.id);
+                datos.setearParametro("@idArticulo", imagen.idArticulo);
+                datos.setearParametro("@UrlImagen", imagen.imagenUrl);
+                datos.ejecutarAcccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, I.ImagenUrl,I.Id, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -30,6 +30,7 @@ namespace negocio
                     aux.nombre = (string)datos.Lector["Nombre"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
                     aux.imagen = new Imagen();
+                    aux.imagen.id = (int)datos.Lector["IdImagen"];
                     aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.marca = new Marca();
                     aux.marca.id = (int)datos.Lector["IdMarca"];
@@ -108,8 +109,7 @@ namespace negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("SELECT update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @marca, IdCategoria = @categoria, Precio = @precio where Id =@id");
-
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @marca, IdCategoria = @categoria, Precio = @precio where Id =@id");
                 datos.setearParametro("@codigo", articulo.codigo);
                 datos.setearParametro("@nombre", articulo.nombre);
                 datos.setearParametro("@descripcion", articulo.descripcion);
@@ -117,14 +117,10 @@ namespace negocio
                 datos.setearParametro("@categoria", articulo.categoria);
                 datos.setearParametro("@precio", articulo.precio);
                 datos.setearParametro("@id", articulo.id);
-
-                datos.ejecutarAcccion();
-           
-
+                datos.ejecutarAcccion();         
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally

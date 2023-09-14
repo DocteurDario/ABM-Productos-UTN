@@ -32,12 +32,9 @@ namespace Activ
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-           /// Articulo auxArticulo = new Articulo();
             ArticuloNegocio negocio = new ArticuloNegocio();
-
             Imagen img = new Imagen();
-            ImagenNegocio negocioImagen = new ImagenNegocio();
-            AccesoADatos datos = new AccesoADatos();
+            ImagenNegocio negocioImagen = new ImagenNegocio();           
 
             try
             {
@@ -51,34 +48,33 @@ namespace Activ
                     Close();
                 }
                 if (articulo == null)
+                {
                     articulo = new Articulo();
-               articulo.codigo = textCodigo.Text;
-               articulo.nombre = textNombre.Text;
-               articulo.descripcion = textDescripcion.Text;
-               articulo.marca = (Marca)cBoxMarca.SelectedItem; 
-               articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-               articulo.precio = decimal.Parse(textPrecio.Text);
+                    articulo.codigo = textCodigo.Text;
+                    articulo.nombre = textNombre.Text;
+                    articulo.descripcion = textDescripcion.Text;
+                    articulo.marca = (Marca)cBoxMarca.SelectedItem;
+                    articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
+                    articulo.precio = decimal.Parse(textPrecio.Text);
 
-                if(articulo.id != 0)
-                {
-
-                negocio.Modificar(articulo);
-                MessageBox.Show("Modificado Exitosamente...");
+                    if (articulo.id != 0)
+                    {
+                        negocio.Modificar(articulo);
+                        int idArticulo = negocio.UltimoRegistro();
+                        img.idArticulo = idArticulo;
+                        negocioImagen.Modificar(img);
+                        MessageBox.Show("Modificado Exitosamente...");
+                    }
+                    else
+                    {
+                        negocio.agregar(articulo);
+                        int idArticulo = negocio.UltimoRegistro();               
+                        img.idArticulo = idArticulo;
+                        img.imagenUrl = txtUrlImagen.Text;
+                        negocioImagen.agregar(img);              
+                        MessageBox.Show("Agregado Exitosamente...");
+                    }
                 }
-                else
-                {
-
-                negocio.agregar(articulo);               
-                }
-
-                int idArticulo = negocio.UltimoRegistro();
-                
-                img.idArticulo = idArticulo;
-                img.imagenUrl = txtUrlImagen.Text;
-
-                negocioImagen.agregar(img);
-               
-                MessageBox.Show("Agregado Exitosamente...");
                 Close();                   
             }
             catch (Exception ex)
