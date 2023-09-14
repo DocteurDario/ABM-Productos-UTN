@@ -23,6 +23,7 @@ namespace Activ
         {
             InitializeComponent();
             this.articulo = articulo;
+            Text = "Modificar";
         }
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -31,7 +32,7 @@ namespace Activ
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            Articulo auxArticulo = new Articulo();
+           /// Articulo auxArticulo = new Articulo();
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             Imagen img = new Imagen();
@@ -49,15 +50,26 @@ namespace Activ
                     MessageBox.Show("Hay campos sin completar");
                     Close();
                 }
-                
-                auxArticulo.codigo = textCodigo.Text;
-                auxArticulo.nombre = textNombre.Text;
-                auxArticulo.descripcion = textDescripcion.Text;
-                auxArticulo.marca = (Marca)cBoxMarca.SelectedItem; 
-                auxArticulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-                auxArticulo.precio = decimal.Parse(textPrecio.Text);
+                if (articulo == null)
+                    articulo = new Articulo();
+               articulo.codigo = textCodigo.Text;
+               articulo.nombre = textNombre.Text;
+               articulo.descripcion = textDescripcion.Text;
+               articulo.marca = (Marca)cBoxMarca.SelectedItem; 
+               articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
+               articulo.precio = decimal.Parse(textPrecio.Text);
 
-                negocio.agregar(auxArticulo);               
+                if(articulo.id != 0)
+                {
+
+                negocio.Modificar(articulo);
+                MessageBox.Show("Modificado Exitosamente...");
+                }
+                else
+                {
+
+                negocio.agregar(articulo);               
+                }
 
                 int idArticulo = negocio.UltimoRegistro();
                 
