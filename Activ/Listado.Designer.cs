@@ -38,7 +38,7 @@
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFiltro = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
@@ -154,14 +154,15 @@
             this.btnFiltro.UseVisualStyleBackColor = true;
             this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
-            // button1
+            // btnAgregarImagen
             // 
-            this.button1.Location = new System.Drawing.Point(445, 371);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 37);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Agregar Imagen";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Location = new System.Drawing.Point(445, 371);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(104, 37);
+            this.btnAgregarImagen.TabIndex = 22;
+            this.btnAgregarImagen.Text = "Agregar Imagen";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
             // 
             // button2
             // 
@@ -179,7 +180,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1024, 439);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.label1);
@@ -215,7 +216,7 @@
         private System.Windows.Forms.TextBox textBoxBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFiltro;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAgregarImagen;
         private System.Windows.Forms.Button button2;
     }
 }
