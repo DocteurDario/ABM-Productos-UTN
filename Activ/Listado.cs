@@ -83,8 +83,9 @@ namespace Activ
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             ArticuloNegocio nego = new ArticuloNegocio();
+            ImagenNegocio imgNegocio = new ImagenNegocio();
             Articulo articulo;
-
+            
 
             try
             {
@@ -94,6 +95,9 @@ namespace Activ
 
                     articulo = (Articulo)dgvLista.CurrentRow.DataBoundItem;
                     nego.Eliminar(articulo.id);
+                                       
+                    imgNegocio.Eliminar(articulo.id);
+
                     cargarListaDataGriedView();
                 }
             }
