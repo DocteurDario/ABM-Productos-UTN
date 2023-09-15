@@ -105,5 +105,33 @@ namespace Activ
             }
 
         }
+
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = textBoxBuscar.Text;
+
+            if (filtro != "")
+            {
+
+                listaFiltrada = listaArticulo.FindAll(x => x.nombre.ToUpper().Contains(textBoxBuscar.Text.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulo;
+            }
+
+            dgvLista.DataSource = null;
+            dgvLista.DataSource = listaFiltrada;
+            dgvLista.Columns["imagen"].Visible = false;
+
+        }
+
+
     }
 }
