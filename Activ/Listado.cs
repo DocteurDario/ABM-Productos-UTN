@@ -31,8 +31,7 @@ namespace Activ
             {
                 listaArticulo = negocio.listar();
                 dgvLista.DataSource = listaArticulo;
-                dgvLista.Columns["imagen"].Visible = false;
-                //dgvLista.Columns["id"].Visible = false;
+                ocultarColumnas();
                 pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
             }
             catch (Exception ex)
@@ -47,10 +46,13 @@ namespace Activ
         }
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
         {
-            Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem; // devuelve un obj, se casteo
-            cargarImagen(seleccionado.imagen.imagenUrl);
+            if(dgvLista.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem; // devuelve un obj, se casteo
+                cargarImagen(seleccionado.imagen.imagenUrl);
+            }
         }
-       private void cargarImagen(string imagen)
+        private void cargarImagen(string imagen)
         {
             try
             {
@@ -132,8 +134,14 @@ namespace Activ
 
             dgvLista.DataSource = null;
             dgvLista.DataSource = listaFiltrada;
-            dgvLista.Columns["imagen"].Visible = false;
+            ocultarColumnas();
 
+        }
+
+        private void  ocultarColumnas()
+        {
+            dgvLista.Columns["imagen"].Visible = false;
+            dgvLista.Columns["id"].Visible = false;
         }
 
 
