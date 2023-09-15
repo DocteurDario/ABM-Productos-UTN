@@ -125,7 +125,7 @@ namespace Activ
             if (filtro != "")
             {
 
-                listaFiltrada = listaArticulo.FindAll(x => x.nombre.ToUpper().Contains(textBoxBuscar.Text.ToUpper()));
+                listaFiltrada = listaArticulo.FindAll( x => x.nombre.ToUpper().Contains(textBoxBuscar.Text.ToUpper()) ||  x.descripcion.ToUpper().Contains(textBoxBuscar.Text.ToUpper()) || x.codigo.ToUpper().Contains(textBoxBuscar.Text.ToUpper()));
             }
             else
             {
