@@ -14,22 +14,17 @@ namespace Activ
 {
     public partial class CargarImagen : Form
     {
-        private Articulo articulo = null;
 
+        private Imagen imagen = null;
         public CargarImagen()
         {
             InitializeComponent();
         }
-        public CargarImagen( Articulo articulo)
+        public CargarImagen(Imagen imagen)
         {
-           InitializeComponent();
-           this.articulo = articulo;
+            InitializeComponent();
+            this.imagen = imagen;
         }
-
-
-
-        
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();

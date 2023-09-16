@@ -14,6 +14,8 @@ namespace Activ
 {
     public partial class Agregar : Form
     {
+        private Imagen imgAgregar;
+
         private Articulo articulo = null;
         public Agregar()
         {
@@ -129,6 +131,12 @@ namespace Activ
             {
                 PicBoxAdd.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CargarImagen ventanaImagen = new CargarImagen(imgAgregar);
+            ventanaImagen.ShowDialog();
         }
     }
 }

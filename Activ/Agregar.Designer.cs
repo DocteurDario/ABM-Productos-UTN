@@ -46,6 +46,7 @@
             this.textNombre = new System.Windows.Forms.TextBox();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxAdd)).BeginInit();
             this.SuspendLayout();
@@ -134,7 +135,6 @@
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(213, 20);
             this.txtUrlImagen.TabIndex = 5;
-           // this.txtUrlImagen.TextChanged += new System.EventHandler(this.textUrl_TextChanged);
             this.txtUrlImagen.Leave += new System.EventHandler(this.txtUrlImagen_Leave);
             // 
             // label5
@@ -179,7 +179,6 @@
             this.label7.Size = new System.Drawing.Size(70, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "URL Imagen:";
-          //  this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // cBoxCategoria
             // 
@@ -224,16 +223,27 @@
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(313, 291);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 37);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Nueva Imagen";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Agregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(600, 332);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Agregar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar";
@@ -265,5 +275,6 @@
         private System.Windows.Forms.TextBox textNombre;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnAgregar;
+        private System.Windows.Forms.Button button1;
     }
 }

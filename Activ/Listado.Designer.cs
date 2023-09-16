@@ -38,7 +38,6 @@
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFiltro = new System.Windows.Forms.Button();
-            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
@@ -154,16 +153,6 @@
             this.btnFiltro.UseVisualStyleBackColor = true;
             this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
-            // btnAgregarImagen
-            // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(445, 371);
-            this.btnAgregarImagen.Name = "btnAgregarImagen";
-            this.btnAgregarImagen.Size = new System.Drawing.Size(104, 37);
-            this.btnAgregarImagen.TabIndex = 22;
-            this.btnAgregarImagen.Text = "Agregar Imagen";
-            this.btnAgregarImagen.UseVisualStyleBackColor = true;
-            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(335, 371);
@@ -180,7 +169,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1024, 439);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.label1);
@@ -216,7 +204,6 @@
         private System.Windows.Forms.TextBox textBoxBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFiltro;
-        private System.Windows.Forms.Button btnAgregarImagen;
         private System.Windows.Forms.Button button2;
     }
 }
