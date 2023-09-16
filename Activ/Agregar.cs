@@ -14,8 +14,7 @@ namespace Activ
 {
     public partial class Agregar : Form
     {
-        private Imagen imgAgregar;
-
+        
         private Articulo articulo = null;
         public Agregar()
         {
@@ -77,6 +76,7 @@ namespace Activ
                          img.imagenUrl = txtUrlImagen.Text;
                          negocioImagen.agregar(img);
                          MessageBox.Show("Agregado Exitosamente...");
+                         agregarImagenNueva(img);
                     }
                     
                     Close();                   
@@ -133,9 +133,9 @@ namespace Activ
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void agregarImagenNueva(Imagen img)
         {
-            CargarImagen ventanaImagen = new CargarImagen(imgAgregar);
+            CargarImagen ventanaImagen = new CargarImagen(img);
             ventanaImagen.ShowDialog();
         }
     }

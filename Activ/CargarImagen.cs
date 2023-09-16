@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,5 +30,25 @@ namespace Activ
         {
             Close();
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            ImagenNegocio datosImagen = new ImagenNegocio();
+            imagen.imagenUrl = txtUrlImagen.Text;
+
+            if (string.IsNullOrEmpty(txtUrlImagen.Text))
+            {
+                 MessageBox.Show("Hay campos sin completar");
+            }
+            else
+            {
+                datosImagen.agregar(imagen);
+                MessageBox.Show("Imagen Agregada con Éxito ...");
+                txtUrlImagen.Clear();
+            }
+
+            
+        }
+
     }
 }
