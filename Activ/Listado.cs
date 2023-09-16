@@ -146,5 +146,9 @@ namespace Activ
             dgvLista.Columns["id"].Visible = false;
         }
 
+        private void btnSiguienteImagen_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

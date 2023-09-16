@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnSiguienteImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -162,12 +163,23 @@
             this.button2.Text = "Detalle";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // btnSiguienteImagen
+            // 
+            this.btnSiguienteImagen.Location = new System.Drawing.Point(864, 346);
+            this.btnSiguienteImagen.Name = "btnSiguienteImagen";
+            this.btnSiguienteImagen.Size = new System.Drawing.Size(104, 37);
+            this.btnSiguienteImagen.TabIndex = 24;
+            this.btnSiguienteImagen.Text = "Siguiente";
+            this.btnSiguienteImagen.UseVisualStyleBackColor = true;
+            this.btnSiguienteImagen.Click += new System.EventHandler(this.btnSiguienteImagen_Click);
+            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1024, 439);
+            this.Controls.Add(this.btnSiguienteImagen);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.textBoxBuscar);
@@ -205,5 +217,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSiguienteImagen;
     }
 }
