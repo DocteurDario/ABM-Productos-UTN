@@ -16,6 +16,10 @@ namespace Activ
     public partial class Listado : Form
     {
         private List<Articulo> listaArticulo;
+        private int imagenActualIndex = 0;
+
+
+
         public Listado()
         {
             InitializeComponent();
@@ -23,13 +27,17 @@ namespace Activ
         private void Listado_Load_1(object sender, EventArgs e)
         {
             cargarListaDataGriedView();
+            if (listaArticulo.Count > 0)
+            {
+                cargarImagen(listaArticulo[0].imagen.imagenUrl);
+            }
         }
         private void cargarListaDataGriedView()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                listaArticulo = negocio.listarArticuloUnico();
+                listaArticulo = negocio.listar();
                 dgvLista.DataSource = listaArticulo;
                 ocultarColumnas();
                 pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
@@ -39,11 +47,13 @@ namespace Activ
                 MessageBox.Show(ex.ToString());
             }
         }
+        
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
             cargarImagen(seleccionado.imagen.imagenUrl);
         }
+        
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
         {
             if(dgvLista.CurrentRow != null)
@@ -52,17 +62,20 @@ namespace Activ
                 cargarImagen(seleccionado.imagen.imagenUrl);
             }
         }
+       
         private void cargarImagen(string imagen)
         {
             try
             {
                 pbImagen.Load(imagen);
+                
             }
             catch (Exception ex)
             {
                 pbImagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
         }
+        
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             Agregar alta = new Agregar();
@@ -148,7 +161,8 @@ namespace Activ
 
         private void btnSiguienteImagen_Click(object sender, EventArgs e)
         {
-
+            
+            
         }
     }
 }
