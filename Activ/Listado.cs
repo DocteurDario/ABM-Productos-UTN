@@ -29,7 +29,7 @@ namespace Activ
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                listaArticulo = negocio.listar();
+                listaArticulo = negocio.listarArticuloUnico();
                 dgvLista.DataSource = listaArticulo;
                 ocultarColumnas();
                 pbImagen.Load(listaArticulo[0].imagen.imagenUrl);

@@ -60,6 +60,50 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Articulo> listarArticuloUnico()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, MIN(I.Id) AS ImagenId, MIN(I.ImagenUrl) AS ImagenUrl, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id GROUP BY A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion, C.Descripcion, A.Precio, A.IdMarca, A.IdCategoria");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.codigo = (string)datos.Lector["Codigo"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.imagen = new Imagen();
+                    aux.imagen.id = (int)datos.Lector["ImagenId"];
+                    aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.marca = new Marca();
+                    aux.marca.descripcion = (string)datos.Lector["Marca"];
+                    aux.categoria = new Categoria();
+                    aux.categoria.descripcion = (string)datos.Lector["Categoria"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
         public void agregar(Articulo nuevo)
         {            
             AccesoADatos dato = new AccesoADatos();
