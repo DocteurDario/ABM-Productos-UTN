@@ -46,9 +46,22 @@ namespace Activ
                 MessageBox.Show("Imagen Agregada con Éxito ...");
                 txtUrlImagen.Clear();
             }
-
-            
         }
 
+        private void txtUrlImagen_TextChanged(object sender, EventArgs e)
+        {
+            cargarImagen(txtUrlImagen.Text);
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                PicBoxAdd.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                PicBoxAdd.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
+            }
+        }
     }
 }

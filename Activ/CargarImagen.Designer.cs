@@ -73,6 +73,7 @@
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(232, 20);
             this.txtUrlImagen.TabIndex = 6;
+            this.txtUrlImagen.TextChanged += new System.EventHandler(this.txtUrlImagen_TextChanged);
             // 
             // PicBoxAdd
             // 
