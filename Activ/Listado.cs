@@ -31,6 +31,9 @@ namespace Activ
             {
                 cargarImagen(listaArticulo[0].imagen.imagenUrl);
             }
+            cboCampo.Items.Add("Precio");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
         }
         private void cargarListaDataGriedView()
         {
@@ -127,20 +130,15 @@ namespace Activ
 
         private void textBoxBuscar_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnFiltro_Click(object sender, EventArgs e)
-        {
             List<Articulo> listaFiltrada;
             string filtro = textBoxBuscar.Text;
 
-            if (filtro != "")
+            if (filtro.Length >= 3)
             {
 
-                listaFiltrada = listaArticulo.FindAll( x => x.nombre.ToUpper().Contains(textBoxBuscar.Text.ToUpper()) 
-                || x.descripcion.ToUpper().Contains(textBoxBuscar.Text.ToUpper()) 
-                || x.codigo.ToUpper().Contains(textBoxBuscar.Text.ToUpper()));
+                listaFiltrada = listaArticulo.FindAll(x => x.nombre.ToUpper().Contains(textBoxBuscar.Text.ToUpper())
+               || x.descripcion.ToUpper().Contains(textBoxBuscar.Text.ToUpper())
+               || x.codigo.ToUpper().Contains(textBoxBuscar.Text.ToUpper()));
             }
             else
             {
@@ -150,6 +148,25 @@ namespace Activ
             dgvLista.DataSource = null;
             dgvLista.DataSource = listaFiltrada;
             ocultarColumnas();
+
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio nego = new ArticuloNegocio();
+            try
+            {
+
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltro.Text;
+                dgvLista.DataSource = nego.Filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
 
         }
 
@@ -163,6 +180,39 @@ namespace Activ
         {
             
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if (opcion == "Precio")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+
+            }
+            else if (opcion == "Nombre")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
+            else if (opcion == "Descripcion")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+
+            }
         }
     }
 }
