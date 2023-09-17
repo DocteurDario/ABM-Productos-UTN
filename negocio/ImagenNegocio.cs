@@ -92,5 +92,31 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Imagen> listarImagenes(int idArt)
+        {
+            List<Imagen> lista = new List<Imagen>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("select Id, IdArticulo, ImagenUrl from IMAGENES where idArticulo =@idArt");
+                datos.setearParametro("@idArt", idArt);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen aux = new Imagen();
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.idArticulo = (int)datos.Lector["idArticulo"];
+                    aux.imagenUrl = (string)datos.Lector["imagenUrl"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

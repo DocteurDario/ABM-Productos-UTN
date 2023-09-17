@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Activ
 {
     public partial class Listado : Form
     {
         private List<Articulo> listaArticulo;
-        private int imagenActualIndex = 0;
+        
         public Listado()
         {
             InitializeComponent();
@@ -52,6 +53,8 @@ namespace Activ
         {
             Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
             cargarImagen(seleccionado.imagen.imagenUrl);
+
+
         }       
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
         {
@@ -216,6 +219,19 @@ namespace Activ
                 cboCriterio.Items.Add("Termina con");
                 cboCriterio.Items.Add("Contiene");
             }
+        }
+
+       
+        private void btDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+            ImagenNegocio datoImg = new ImagenNegocio();
+            List<Imagen> imgArt = datoImg.listarImagenes(seleccionado.id);
+           
+            Detalle detalle = new Detalle(seleccionado, imgArt);
+            detalle.ShowDialog();
+            cargarListaDataGriedView();
         }
     }
 }
