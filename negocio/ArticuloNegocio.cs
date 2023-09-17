@@ -60,7 +60,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Articulo> listarArticuloUnico()
         {
             List<Articulo> lista = new List<Articulo>();
@@ -185,20 +184,35 @@ namespace negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion,I.Id, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id and ";
+                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion,I.Id, I.ImagenUrl, M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id where";
 
                 if (campo == "Precio")
                 {
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "A.Precio > " + filtro;
+                            consulta += " A.Precio > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "A.Precio < " + filtro;
+                            consulta += " A.Precio < " + filtro;
                             break;
-                        case "Descripcion":
-                            consulta += "A.Precio = " + filtro;
+                        case "Igual a":
+                            consulta += " A.Precio = " + filtro;
+                            break;
+                    }
+                }
+                else if(campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += " A.Nombre like '" + filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += " A.Nombre like '%" + filtro + "'";
+                            break;
+                        case "Contiene":
+                            consulta += " A.Nombre like '%" + filtro + "%' ";
                             break;
                     }
                 }
@@ -207,13 +221,13 @@ namespace negocio
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "A." + campo + " like '" + filtro + "%' ";
+                            consulta += " A.Descripcion like '" + filtro + "%' ";
                             break;
                         case "Termina con":
-                            consulta += "A." + campo + " like '%" + filtro + "'";
+                            consulta += " A.Descripcion like '%" + filtro + "' ";
                             break;
                         case "Contiene":
-                            consulta += "A." + campo + " like '%" + filtro + "%' ";
+                            consulta += " A.Descripcion like '%" + filtro + "%' ";
                             break;
                     }
                 }
