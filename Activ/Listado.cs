@@ -17,9 +17,6 @@ namespace Activ
     {
         private List<Articulo> listaArticulo;
         private int imagenActualIndex = 0;
-
-
-
         public Listado()
         {
             InitializeComponent();
@@ -43,20 +40,19 @@ namespace Activ
                 listaArticulo = negocio.listar();
                 dgvLista.DataSource = listaArticulo;
                 ocultarColumnas();
+                dgvLista.Focus();
                 pbImagen.Load(listaArticulo[0].imagen.imagenUrl);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-        
+        }        
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
             cargarImagen(seleccionado.imagen.imagenUrl);
-        }
-        
+        }       
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
         {
             if(dgvLista.CurrentRow != null)
@@ -64,21 +60,18 @@ namespace Activ
                 Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem; // devuelve un obj, se casteo
                 cargarImagen(seleccionado.imagen.imagenUrl);
             }
-        }
-       
+        }      
         private void cargarImagen(string imagen)
         {
             try
             {
-                pbImagen.Load(imagen);
-                
+                pbImagen.Load(imagen);                
             }
             catch (Exception ex)
             {
                 pbImagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
-        }
-        
+        }       
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             Agregar alta = new Agregar();
@@ -97,37 +90,28 @@ namespace Activ
             modificar.ShowDialog();
             cargarListaDataGriedView();
         }
-
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             ArticuloNegocio nego = new ArticuloNegocio();
             ImagenNegocio imgNegocio = new ImagenNegocio();
-            Articulo articulo;
-            
+            Articulo articulo;          
 
             try
             {
                 DialogResult respuesta = MessageBox.Show("¿Desea eliminar este articulo?..", "Eliminar Articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); ;
                 if (respuesta == DialogResult.Yes)
                 {
-
                     articulo = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-                    nego.Eliminar(articulo.id);
-                                       
+                    nego.Eliminar(articulo.id);                                       
                     imgNegocio.Eliminar(articulo.id);
-
                     cargarListaDataGriedView();
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
-
             }
-
         }
-
         private void textBoxBuscar_TextChanged(object sender, EventArgs e)
         {
             List<Articulo> listaFiltrada;
@@ -135,10 +119,9 @@ namespace Activ
 
             if (filtro.Length >= 3)
             {
-
-                listaFiltrada = listaArticulo.FindAll(x => x.nombre.ToUpper().Contains(textBoxBuscar.Text.ToUpper())
-               || x.descripcion.ToUpper().Contains(textBoxBuscar.Text.ToUpper())
-               || x.codigo.ToUpper().Contains(textBoxBuscar.Text.ToUpper()));
+                listaFiltrada = listaArticulo.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper())
+               || x.descripcion.ToUpper().Contains(filtro.ToUpper())
+               || x.codigo.ToUpper().Contains(filtro.ToUpper()));
             }
             else
             {
@@ -148,15 +131,52 @@ namespace Activ
             dgvLista.DataSource = null;
             dgvLista.DataSource = listaFiltrada;
             ocultarColumnas();
-
         }
-
+        private bool validarFiltro()
+        {
+            if(cboCampo.SelectedIndex <0)
+            {
+                MessageBox.Show("Seleccione el campo para filtrar");
+                return true;
+            }
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione el campo para filtrar");
+                return true;
+            }
+            if (cboCampo.SelectedIndex.ToString() == "Precio")
+            {
+                if (string.IsNullOrEmpty(txtFiltro.Text))
+                {
+                    MessageBox.Show("cargar numero");
+                    return true;
+                }
+                if (!(soloNumeros(txtFiltro.Text)))
+                {
+                    MessageBox.Show("El filtro elegido requiere números");
+                    return true;
+                }               
+            }
+            return false;
+        }
+        private bool soloNumeros(string cadena)
+        {
+            foreach(char caracter in cadena)
+            {
+                if(!(char.IsNumber(caracter)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             ArticuloNegocio nego = new ArticuloNegocio();
             try
             {
-
+                if (validarFiltro())
+                    return;
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltro.Text;
@@ -164,29 +184,14 @@ namespace Activ
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
-
         }
-
         private void  ocultarColumnas()
         {
             dgvLista.Columns["imagen"].Visible = false;
             dgvLista.Columns["id"].Visible = false;
         }
-
-        private void btnSiguienteImagen_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string opcion = cboCampo.SelectedItem.ToString();
@@ -196,7 +201,6 @@ namespace Activ
                 cboCriterio.Items.Add("Mayor a");
                 cboCriterio.Items.Add("Menor a");
                 cboCriterio.Items.Add("Igual a");
-
             }
             else if (opcion == "Nombre")
             {
@@ -211,7 +215,6 @@ namespace Activ
                 cboCriterio.Items.Add("Comienza con");
                 cboCriterio.Items.Add("Termina con");
                 cboCriterio.Items.Add("Contiene");
-
             }
         }
     }

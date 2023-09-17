@@ -101,9 +101,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
-
-
         public void agregar(Articulo nuevo)
         {            
             AccesoADatos dato = new AccesoADatos();
@@ -168,26 +165,20 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
         public void Eliminar(int id)
         {
-
             try
             {
                 AccesoADatos datos = new AccesoADatos();
                 datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @Id");
                 datos.setearParametro("@Id", id);
                 datos.ejecutarAcccion();
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
-
         public List<Articulo> Filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> list = new List<Articulo>();
@@ -256,15 +247,10 @@ namespace negocio
 
                     list.Add(aux);
                 }
-
                 return list;
-
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

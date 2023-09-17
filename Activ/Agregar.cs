@@ -13,8 +13,7 @@ using negocio;
 namespace Activ
 {
     public partial class Agregar : Form
-    {
-        
+    {        
         private Articulo articulo = null;
         public Agregar()
         {
@@ -34,58 +33,74 @@ namespace Activ
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             Imagen img = new Imagen();
-            ImagenNegocio negocioImagen = new ImagenNegocio();           
+            ImagenNegocio negocioImagen = new ImagenNegocio();
             try
             {
-                if(string.IsNullOrEmpty(textCodigo.Text) ||
+                if (string.IsNullOrEmpty(textCodigo.Text) ||
                     string.IsNullOrEmpty(textNombre.Text) ||
                     string.IsNullOrEmpty(textDescripcion.Text) ||
                     string.IsNullOrEmpty(txtUrlImagen.Text) ||
                     string.IsNullOrEmpty(textPrecio.Text))
-                {               
-                    MessageBox.Show("Hay campos sin completar");
-                    Close();
-                }
-                else 
                 {
-                    if (articulo == null)
+                    MessageBox.Show("Hay campos sin completar");
+                }
+                else
+                {
+                    if (soloNumeros(textPrecio.Text))
                     {
-                        articulo = new Articulo();
-                    }
-                    articulo.codigo = textCodigo.Text;
-                    articulo.nombre = textNombre.Text;
-                    articulo.descripcion = textDescripcion.Text;
-                    articulo.marca = (Marca)cBoxMarca.SelectedItem;
-                    articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-                    articulo.precio = decimal.Parse(textPrecio.Text);
+                        if (articulo == null)
+                        {
+                            articulo = new Articulo();
+                        }
+                        articulo.codigo = textCodigo.Text;
+                        articulo.nombre = textNombre.Text;
+                        articulo.descripcion = textDescripcion.Text;
+                        articulo.marca = (Marca)cBoxMarca.SelectedItem;
+                        articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
+                        articulo.precio = decimal.Parse(textPrecio.Text);
 
-                    if (articulo.id != 0)
-                    {
+                        if (articulo.id != 0)
+                        {
                             negocio.Modificar(articulo);
                             img.id = articulo.imagen.id;
                             img.idArticulo = articulo.id;
                             img.imagenUrl = txtUrlImagen.Text;
                             negocioImagen.Modificar(img);
                             MessageBox.Show("Modificado Exitosamente...");
+                        }
+                        else
+                        {
+                            negocio.agregar(articulo);
+                            int idArticulo = negocio.UltimoRegistro();
+                            img.idArticulo = idArticulo;
+                            img.imagenUrl = txtUrlImagen.Text;
+                            negocioImagen.agregar(img);
+                            MessageBox.Show("Agregado Exitosamente...");
+                            agregarImagenNueva(img);
+                        }
                     }
                     else
                     {
-                         negocio.agregar(articulo);
-                         int idArticulo = negocio.UltimoRegistro();
-                         img.idArticulo = idArticulo;
-                         img.imagenUrl = txtUrlImagen.Text;
-                         negocioImagen.agregar(img);
-                         MessageBox.Show("Agregado Exitosamente...");
-                         agregarImagenNueva(img);
-                    }
-                    
-                    Close();                   
+                        MessageBox.Show("El campo de precio debe contener un número válido.");
+                    }                
                 }
+                Close();                   
             }
             catch (Exception ex)
             {
                 MessageBox.Show(" Error : "+ ex.ToString());
             }
+        }
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         private void Agregar_Load(object sender, EventArgs e)
         {
@@ -132,7 +147,6 @@ namespace Activ
                 PicBoxAdd.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogz_Eq26YoRE8mV0mmH4cP762p-zz6TidQg&usqp=CAU");
             }
         }
-
         private void agregarImagenNueva(Imagen img)
         {
             CargarImagen ventanaImagen = new CargarImagen(img);
