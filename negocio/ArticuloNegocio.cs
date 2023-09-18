@@ -240,7 +240,7 @@ namespace negocio
                     aux.id = (int)datos.Lector["Id"];
                     aux.codigo = (string)datos.Lector["Codigo"];
                     aux.nombre = (string)datos.Lector["Nombre"];
-                    aux.descripcion = (string)datos.Lector["Descripción"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
                     aux.imagen = new Imagen();
                     aux.imagen.id = (int)datos.Lector["Id"];
                     aux.imagen.imagenUrl = (string)datos.Lector["ImagenUrl"];
