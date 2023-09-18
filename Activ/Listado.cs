@@ -87,27 +87,39 @@ namespace Activ
         }
         private void BtnModificar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-            Agregar modificar = new Agregar(seleccionado);
-            modificar.ShowDialog();
-            cargarListaDataGriedView();
+            if (dgvLista.Rows.Count > 0)
+            {
+                Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+                Agregar modificar = new Agregar(seleccionado);
+                modificar.ShowDialog();
+                cargarListaDataGriedView();
+            }
+            else
+            {
+                MessageBox.Show("No se puede modificar un articulo si la lista esta vacia");
+            }
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             ArticuloNegocio nego = new ArticuloNegocio();
             ImagenNegocio imgNegocio = new ImagenNegocio();
-            Articulo articulo;          
-
+                    
             try
             {
-                DialogResult respuesta = MessageBox.Show("¿Desea eliminar este articulo?..", "Eliminar Articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); ;
-                if (respuesta == DialogResult.Yes)
+                if (dgvLista.Rows.Count > 0)
                 {
-                    articulo = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-                    nego.Eliminar(articulo.id);                                       
-                    imgNegocio.Eliminar(articulo.id);
-                    cargarListaDataGriedView();
+                    DialogResult respuesta = MessageBox.Show("¿Desea eliminar este articulo?..", "Eliminar Articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); ;
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        Articulo articulo = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+                        nego.Eliminar(articulo.id);
+                        imgNegocio.Eliminar(articulo.id);
+                        cargarListaDataGriedView();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede eliminar un articulo si la lista esta vacia");
                 }
             }
             catch (Exception ex)
@@ -224,14 +236,19 @@ namespace Activ
        
         private void btDetalle_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-            ImagenNegocio datoImg = new ImagenNegocio();
-            List<Imagen> imgArt = datoImg.listarImagenes(seleccionado.id);
-           
-            Detalle detalle = new Detalle(seleccionado, imgArt);
-            detalle.ShowDialog();
-            cargarListaDataGriedView();
+            if(dgvLista.Rows.Count > 0)
+            {
+                Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+                ImagenNegocio datoImg = new ImagenNegocio();
+                List<Imagen> imgArt = datoImg.listarImagenes(seleccionado.id);
+                Detalle detalle = new Detalle(seleccionado, imgArt);
+                detalle.ShowDialog();
+                cargarListaDataGriedView();
+            }
+            else
+            {
+                MessageBox.Show("No se puede mostrar los detalle si la lista esta vacia");
+            }          
         }
 
         private void DatosGrid()
