@@ -108,5 +108,20 @@ namespace Activ
             pbImagen.Enabled = false;
 
         }
+
+        private void imagenAnterior_Click(object sender, EventArgs e)
+        {
+
+            if (posicion > 0)
+            {
+                posicion--;
+                string url = imagenes[posicion].imagenUrl;
+                cargarImagen(url);
+            }
+            else
+            {
+                MessageBox.Show("Esta es la primera imagen, no hay imágenes anteriores.");
+            }
+        }
     }
 }

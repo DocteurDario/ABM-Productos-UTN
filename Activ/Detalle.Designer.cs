@@ -45,6 +45,7 @@
             this.cBoxCategoria = new System.Windows.Forms.ComboBox();
             this.textCodigo = new System.Windows.Forms.TextBox();
             this.textNombre = new System.Windows.Forms.TextBox();
+            this.imagenAnterior = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
@@ -210,11 +211,22 @@
             this.textNombre.Size = new System.Drawing.Size(213, 20);
             this.textNombre.TabIndex = 1;
             // 
+            // imagenAnterior
+            // 
+            this.imagenAnterior.Location = new System.Drawing.Point(349, 275);
+            this.imagenAnterior.Name = "imagenAnterior";
+            this.imagenAnterior.Size = new System.Drawing.Size(85, 42);
+            this.imagenAnterior.TabIndex = 6;
+            this.imagenAnterior.Text = "<<";
+            this.imagenAnterior.UseVisualStyleBackColor = true;
+            this.imagenAnterior.Click += new System.EventHandler(this.imagenAnterior_Click);
+            // 
             // Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 353);
+            this.Controls.Add(this.imagenAnterior);
             this.Controls.Add(this.Imagen);
             this.Controls.Add(this.groupBox1);
             this.Name = "Detalle";
@@ -246,5 +258,6 @@
         private System.Windows.Forms.ComboBox cBoxCategoria;
         private System.Windows.Forms.TextBox textCodigo;
         private System.Windows.Forms.TextBox textNombre;
+        private System.Windows.Forms.Button imagenAnterior;
     }
 }
