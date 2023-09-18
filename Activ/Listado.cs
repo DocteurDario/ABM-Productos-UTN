@@ -233,5 +233,11 @@ namespace Activ
             detalle.ShowDialog();
             cargarListaDataGriedView();
         }
+
+        private void DatosGrid()
+        {
+
+
+        }
     }
 }
