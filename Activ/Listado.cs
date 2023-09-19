@@ -51,8 +51,12 @@ namespace Activ
         }        
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-            cargarImagen(seleccionado.imagen.imagenUrl);
+            if (dgvLista.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.imagen.imagenUrl);
+            }
+            
 
 
         }       
