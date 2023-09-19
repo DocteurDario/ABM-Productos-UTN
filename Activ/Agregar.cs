@@ -67,6 +67,7 @@ namespace Activ
                             img.imagenUrl = txtUrlImagen.Text;
                             negocioImagen.Modificar(img);
                             MessageBox.Show("Modificado Exitosamente...");
+                            Close();
                         }
                         else
                         {
@@ -77,6 +78,7 @@ namespace Activ
                             negocioImagen.agregar(img);
                             MessageBox.Show("Agregado Exitosamente...");
                             agregarImagenNueva(img);
+                            Close();
                         }
                     }
                     else
@@ -84,7 +86,7 @@ namespace Activ
                         MessageBox.Show("El campo de precio debe contener un número válido.");
                     }                
                 }
-                Close();                   
+                               
             }
             catch (Exception ex)
             {

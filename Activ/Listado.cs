@@ -56,9 +56,6 @@ namespace Activ
                 Articulo seleccionado = (Articulo)dgvLista.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.imagen.imagenUrl);
             }
-            
-
-
         }       
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
         {

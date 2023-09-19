@@ -43,6 +43,7 @@ namespace Activ
 
         private void AgregarArtToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             foreach (var item in Application.OpenForms)
             {
                 if (item.GetType() == typeof(Agregar))
@@ -50,10 +51,10 @@ namespace Activ
                     return;
                 }
             }
-
+            */
             Agregar ventana = new Agregar();
-            ventana.MdiParent = this;
-            ventana.Show();
+            //ventana.MdiParent = this;
+            ventana.ShowDialog();
 
         }
 
