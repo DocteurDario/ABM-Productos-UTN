@@ -34,6 +34,7 @@ namespace Activ
             ArticuloNegocio negocio = new ArticuloNegocio();
             Imagen img = new Imagen();
             ImagenNegocio negocioImagen = new ImagenNegocio();
+
             try
             {
                 if (string.IsNullOrEmpty(textCodigo.Text) ||
@@ -46,7 +47,7 @@ namespace Activ
                 }
                 else
                 {
-                    if (soloNumeros(textPrecio.Text))
+                    if (decimal.TryParse(textPrecio.Text, out decimal precio) && precio >= 0)
                     {
                         if (articulo == null)
                         {
@@ -57,7 +58,7 @@ namespace Activ
                         articulo.descripcion = textDescripcion.Text;
                         articulo.marca = (Marca)cBoxMarca.SelectedItem;
                         articulo.categoria = (Categoria)cBoxCategoria.SelectedItem;
-                        articulo.precio = decimal.Parse(textPrecio.Text);
+                        articulo.precio = precio;
 
                         if (articulo.id != 0)
                         {
@@ -83,16 +84,17 @@ namespace Activ
                     }
                     else
                     {
-                        MessageBox.Show("El campo de precio debe contener un número válido.");
-                    }                
+                        MessageBox.Show("El campo de precio debe contener un número válido y no negativo.");
+                    }
                 }
-                               
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Error : "+ ex.ToString());
+                MessageBox.Show("Error: " + ex.ToString());
             }
         }
+
+
         private bool soloNumeros(string cadena)
         {
             foreach (char caracter in cadena)
